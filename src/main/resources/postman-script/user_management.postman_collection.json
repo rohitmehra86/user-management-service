@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "995bbc2d-5b81-4eef-af58-fb89dbafab29",
+		"name": "user_management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "TenantOne",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"rohit3\",\r\n    \"password\": \"123456\",\r\n    \"tenantOrClientId\": \"100\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "TenantOne",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"rohit2\",\r\n    \"refreshToken\": \"9794c3f9-fecf-450b-af9b-eb1bbe14d18b\",\r\n    \"tenantOrClientId\": 100\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/refreshtoken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"refreshtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "TenantOne",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"rohit3\",\r\n    \"tenantOrClientId\": 100\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-TenantID",
+						"value": "TenantOne",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"rohit3\",\r\n    \"password\": \"123456\",\r\n    \"tenantOrClientId\": \"100\",\r\n    \"email\":\"rohit3@paxaris.com\",\r\n    \"fullName\":\"rohit mehra\",\r\n    \"gender\":\"male\",\r\n    \"role\":[\"ADMIN\"]\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validateRequest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2hpdDMiLCJhdWQiOiIxMDAiLCJzY29wZXMiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpc3MiOiJzeXN0ZW0iLCJpYXQiOjE2MzMzNTMyOTUsImV4cCI6MTYzMzM1MzM1NX0.kX2xmLq4uVFxDfhrBIRoJDM_8N6WXr234M6ibEJEu4U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

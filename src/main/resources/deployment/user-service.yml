@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-app
+  labels:
+    app: user-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : user-service-app
+  template:
+    metadata:
+      labels:
+        app: user-service-app
+    spec:
+      containers:
+      - name: user-service-app
+        image: devopspaxaris/user-management-service:0.0.1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 9091
+        env:   # Setting Enviornmental Variables
+            - name: USER_MGNT_DB_URL   # Setting Database host address from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : user-db-config
+                  key :  dbUrl
+
+            - name: DB_USERNAME  # Setting Database username from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : user-mysql-secrets
+                  key :  username
+
+            - name: DB_PASSWORD # Setting Database password from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : user-mysql-secrets
+                  key :  password
+              
+            - name: EUREKA_SERVER_URL  # Setting Service config URL
+              value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  user-service-svc
+spec:
+  selector:
+    app:  user-service-app
+  ports:
+  - port:  80
+    targetPort:  9091

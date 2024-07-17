@@ -1,0 +1,8 @@
+apiVersion : v1
+kind : ConfigMap
+metadata:
+  name : user-db-config
+data:
+  host : user-mysql
+  dbUrl : jdbc:mysql://tenant-mysql:3306/tenant-management?createDatabaseIfNotExist=true
+  dbName: user-management
